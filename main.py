@@ -30,7 +30,7 @@ class UserInput(BaseModel):
 @app.get("/case")
 def get_case():
     try:
-        model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
+        model = genai.GenerativeModel('models/gemini-pro')
         prompt = "Elabora un caso de estudio corto relacionado con la privacidad y protección de datos bajo la norma ISO/IEC 29100, sólo pon el caso de estudio, no la solución, además de que sea 1 caso de cualquier ámbito, no únicamente salud."
         response = model.generate_content(prompt)
         return {"case_study": response.text}
@@ -40,7 +40,7 @@ def get_case():
 @app.post("/solve")
 def solve_case(input_data: SolveInput):
     try:
-        model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
+        model = genai.GenerativeModel('models/gemini-pro')
         prompt = f"Propón una solución adecuada para el siguiente caso según la norma ISO/IEC 29100:\n{input_data.case_study}"
         response = model.generate_content(prompt)
         return {"ia_solution": response.text}
@@ -50,7 +50,7 @@ def solve_case(input_data: SolveInput):
 @app.post("/compare")
 def compare_case(input_data: UserInput):
     try:
-        model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
+        model = genai.GenerativeModel('models/gemini-pro')
         prompt = (
             f"Compara la siguiente respuesta del usuario:\n{input_data.manual_response}\n"
             f"con la solución IA:\n{input_data.ia_solution}\n"
