@@ -9,9 +9,7 @@ genai.configure(api_key="AIzaSyDqLmFMdbXwnrCPQRbYxTy3s7N9yZO5SPo")
 app = FastAPI()
 
 # Permitir CORS al frontend
-origins = [
-    "http://localhost:3000"
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
