@@ -33,7 +33,7 @@ class UserInput(BaseModel):
 def get_case():
     try:
         model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
-        prompt = "Elabora un caso de estudio corto relacionado con la privacidad y protección de datos bajo la norma ISO/IEC 29100, sólo pon el caso de estudio, no la solución, además de que sea 1 caso de cualquier los ámbito, no únicamente salud."
+        prompt = "Elabora un caso de estudio corto relacionado con la privacidad y protección de datos bajo la norma ISO/IEC 29100, sólo pon el caso de estudio, no la solución, además de que sea 1 caso de cualquier ámbito, no únicamente salud."
         response = model.generate_content(prompt)
         return {"case_study": response.text}
     except Exception as e:
