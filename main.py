@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 # Configura Gemini API (⚠ pon tu API KEY aquí directamente solo para pruebas locales)
-genai.configure(api_key="AIzaSyDpV3E2PEjRJRSTNanCCTriozgh8rOU0ZQ")
+genai.configure(api_key="AIzaSyClxoYgd4fT25sNpfDC3mTvFO0VWY7WvSE")
 
 app = FastAPI()
 
