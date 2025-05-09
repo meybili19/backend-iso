@@ -6,7 +6,6 @@ import io
 import pdfplumber
 from docx import Document
 
-# Configura Gemini API (⚠ pon tu API KEY aquí directamente solo para pruebas locales)
 genai.configure(api_key="AIzaSyDpV3E2PEjRJRSTNanCCTriozgh8rOU0ZQ")
 model = genai.GenerativeModel("gemini-2.0-flash")
 
@@ -43,7 +42,7 @@ async def solve_case(data: dict):
     case = data.get("case", "")
     if not case:
         raise HTTPException(status_code=400, detail="Caso no proporcionado")
-    response = model.generate_content(f"Resuelve el siguiente caso de estudio según la norma ISO/IEC 29100:\n\n{case}")
+    response = model.generate_content(f"Resuelve el siguiente caso de estudio según la norma ISO/IEC 29100, no olvides incluir controles, referencias, etc:\n\n{case}")
     return {"solution": response.text}
 
 @app.post("/compare")
@@ -53,7 +52,7 @@ async def compare_solutions(data: UserSolution):
         f"Caso:\n{data.case}\n\n"
         f"Solución del usuario:\n{data.user_solution}\n\n"
         f"Solución generada por IA:\n{data.ia_solution}\n\n"
-        "Evalúa si coinciden en criterios, pasos y razonamiento. Devuelve un porcentaje de coincidencia y un breve análisis en donde se mencione en qué coinciden, criterios, etc."
+        "Evalúa si coinciden en criterios, pasos y razonamiento. Devuelve un porcentaje de coincidencia y un análisis en donde se mencione en qué coinciden, criterios, etc."
     )
     response = model.generate_content(prompt)
     return {"comparison": response.text}
