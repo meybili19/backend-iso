@@ -3,4 +3,4 @@ uvicorn
 python-multipart
 google-generativeai
 pdfplumber
-docx
+python-docx
